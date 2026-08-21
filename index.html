@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JS Joias</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#d6ad60">
+
+<link
+    rel="apple-touch-icon"
+    href="img/icon-192.png"
+>
+</head>
+
+<body>
+
+    <header class="topo">
+
+        <div class="logo-area">
+            <div class="logo-circulo">JS</div>
+
+            <div>
+                <h1>JS JOIAS</h1>
+                <p>Elegância em cada detalhe</p>
+            </div>
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <section class="hero">
+
+            <span class="hero-detalhe">
+                ✦ JOIAS SELECIONADAS ✦
+            </span>
+
+            <h2>
+                Encontre a joia
+                <span>perfeita para você</span>
+            </h2>
+
+            <p>
+                Peças selecionadas para deixar cada momento
+                ainda mais especial.
+            </p>
+
+        </section>
+
+
+        <section class="busca-area">
+
+            <div class="busca">
+
+                <span>⌕</span>
+
+                <input
+                    type="text"
+                    id="campoBusca"
+                    placeholder="Buscar uma joia..."
+                >
+
+            </div>
+
+        </section>
+
+
+        <section class="categorias">
+
+            <button
+                class="categoria ativa"
+                data-categoria="todos"
+            >
+                Todos
+            </button>
+
+            <button
+                class="categoria"
+                data-categoria="aneis"
+            >
+                Anéis
+            </button>
+
+            <button
+                class="categoria"
+                data-categoria="colares"
+            >
+                Colares
+            </button>
+
+            <button
+                class="categoria"
+                data-categoria="brincos"
+            >
+                Brincos
+            </button>
+
+            <button
+                class="categoria"
+                data-categoria="pulseiras"
+            >
+                Pulseiras
+            </button>
+
+        </section>
+
+
+        <section class="titulo-produtos">
+
+            <div>
+                <span>NOSSA COLEÇÃO</span>
+                <h2>Joias disponíveis</h2>
+            </div>
+
+            <p id="quantidadeProdutos">
+                Carregando...
+            </p>
+
+        </section>
+
+
+        <section
+            class="produtos"
+            id="listaProdutos"
+        ></section>
+
+
+        <div
+            class="sem-resultados"
+            id="semResultados"
+        >
+            <div>◇</div>
+
+            <h3>
+                Nenhuma joia encontrada
+            </h3>
+
+            <p>
+                Nosso catálogo será atualizado em breve.
+            </p>
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <div class="footer-logo">
+            JS
+        </div>
+
+        <h2>JS JOIAS</h2>
+
+        <p>
+            Elegância em cada detalhe.
+        </p>
+
+        <span>
+            © 2026 JS Joias
+        </span>
+
+    </footer>
+
+
+    <!-- BIBLIOTECA DO SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- NOSSO JAVASCRIPT -->
+    <script src="script.js"></script>
+    <script>
+
+    if ("serviceWorker" in navigator) {
+
+        window.addEventListener(
+            "load",
+            () => {
+
+                navigator.serviceWorker
+                    .register("./service-worker.js")
+                    .then(() => {
+                        console.log(
+                            "JS Joias instalada como PWA."
+                        );
+                    })
+                    .catch(error => {
+                        console.error(
+                            "Erro no Service Worker:",
+                            error
+                        );
+                    });
+
+            }
+        );
+
+    }
+
+</script>
+
+</body>
+
+</html>

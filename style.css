@@ -1,0 +1,1188 @@
+/* =========================
+   CONFIGURAÇÕES
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --preto: #090909;
+    --preto-card: #111111;
+    --preto-claro: #171717;
+
+    --dourado: #d6ad60;
+    --dourado-claro: #f0d28d;
+
+    --branco: #ffffff;
+    --cinza: #a8a8a8;
+    --borda: rgba(214, 173, 96, 0.18);
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #080808;
+    color: var(--branco);
+    min-height: 100vh;
+}
+
+
+/* =========================
+   TOPO
+========================= */
+
+.topo {
+    padding: 18px;
+    border-bottom: 1px solid var(--borda);
+
+    background:
+        linear-gradient(
+            180deg,
+            #111111,
+            #090909
+        );
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    max-width: 1100px;
+    margin: auto;
+}
+
+.logo-circulo {
+    width: 48px;
+    height: 48px;
+
+    border: 1px solid var(--dourado);
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: var(--dourado-claro);
+
+    font-family: Georgia, serif;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.logo-area h1 {
+    font-family: Georgia, serif;
+    font-size: 19px;
+
+    letter-spacing: 3px;
+
+    color: var(--dourado-claro);
+}
+
+.logo-area p {
+    color: #8c8c8c;
+    font-size: 11px;
+
+    margin-top: 3px;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    padding: 52px 20px 32px;
+
+    text-align: center;
+
+    max-width: 650px;
+    margin: auto;
+}
+
+.hero-detalhe {
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    color: var(--dourado);
+
+    display: block;
+
+    margin-bottom: 18px;
+}
+
+.hero h2 {
+    font-family: Georgia, serif;
+
+    font-size: 34px;
+
+    line-height: 1.15;
+
+    font-weight: normal;
+}
+
+.hero h2 span {
+    display: block;
+
+    color: var(--dourado-claro);
+
+    font-style: italic;
+}
+
+.hero p {
+    color: var(--cinza);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    margin-top: 16px;
+}
+
+
+/* =========================
+   BUSCA
+========================= */
+
+.busca-area {
+    padding: 0 18px;
+}
+
+.busca {
+    max-width: 700px;
+
+    margin: auto;
+
+    background: var(--preto-card);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 14px;
+
+    padding: 0 15px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+.busca span {
+    font-size: 23px;
+
+    color: var(--dourado);
+}
+
+.busca input {
+    width: 100%;
+
+    padding: 16px 5px;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 15px;
+}
+
+.busca input::placeholder {
+    color: #666;
+}
+
+
+/* =========================
+   CATEGORIAS
+========================= */
+
+.categorias {
+    display: flex;
+
+    gap: 9px;
+
+    overflow-x: auto;
+
+    padding: 18px;
+
+    max-width: 740px;
+
+    margin: auto;
+
+    scrollbar-width: none;
+}
+
+.categorias::-webkit-scrollbar {
+    display: none;
+}
+
+.categoria {
+    white-space: nowrap;
+
+    background: #111;
+
+    color: #a7a7a7;
+
+    border: 1px solid #222;
+
+    border-radius: 30px;
+
+    padding: 10px 18px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.categoria.ativa {
+    background: var(--dourado);
+
+    color: #111;
+
+    border-color: var(--dourado);
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   TÍTULO PRODUTOS
+========================= */
+
+.titulo-produtos {
+    max-width: 1000px;
+
+    margin: 15px auto;
+
+    padding: 0 18px;
+
+    display: flex;
+
+    align-items: end;
+    justify-content: space-between;
+}
+
+.titulo-produtos span {
+    color: var(--dourado);
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+.titulo-produtos h2 {
+    font-family: Georgia, serif;
+
+    font-size: 25px;
+
+    margin-top: 4px;
+
+    font-weight: normal;
+}
+
+.titulo-produtos p {
+    font-size: 12px;
+
+    color: #777;
+}
+
+
+/* =========================
+   PRODUTOS
+========================= */
+
+.produtos {
+    padding: 8px 16px 45px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 13px;
+
+    max-width: 1000px;
+
+    margin: auto;
+}
+
+
+/* CARD */
+
+.produto-card {
+    background: var(--preto-card);
+
+    border: 1px solid #191919;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    transition: 0.25s;
+}
+
+.produto-card:active {
+    transform: scale(0.98);
+}
+
+
+/* IMAGEM */
+
+.produto-imagem {
+    width: 100%;
+
+    aspect-ratio: 1 / 1.1;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1c1c1c,
+            #0e0e0e
+        );
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.produto-imagem img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* ETIQUETA */
+
+.etiqueta {
+    position: absolute;
+
+    left: 9px;
+    top: 9px;
+
+    background: rgba(0, 0, 0, 0.72);
+
+    backdrop-filter: blur(7px);
+
+    color: var(--dourado-claro);
+
+    border: 1px solid rgba(214, 173, 96, 0.25);
+
+    font-size: 8px;
+
+    padding: 6px 8px;
+
+    border-radius: 20px;
+
+    letter-spacing: 1px;
+}
+
+
+/* INFO */
+
+.produto-info {
+    padding: 13px;
+}
+
+.produto-categoria {
+    color: var(--dourado);
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+}
+
+.produto-info h3 {
+    font-family: Georgia, serif;
+
+    font-size: 16px;
+
+    font-weight: normal;
+
+    margin: 6px 0;
+}
+
+.produto-preco {
+    font-size: 17px;
+
+    font-weight: bold;
+
+    color: var(--dourado-claro);
+
+    margin-bottom: 12px;
+}
+
+
+/* WHATSAPP */
+
+.botao-whatsapp {
+    width: 100%;
+
+    border: none;
+
+    background: var(--dourado);
+
+    color: #101010;
+
+    border-radius: 9px;
+
+    padding: 11px 5px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    font-size: 11px;
+}
+
+.botao-whatsapp:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================
+   SEM RESULTADOS
+========================= */
+
+.sem-resultados {
+    text-align: center;
+
+    padding: 50px 20px;
+
+    display: none;
+}
+
+.sem-resultados div {
+    font-size: 40px;
+
+    color: var(--dourado);
+
+    margin-bottom: 10px;
+}
+
+.sem-resultados h3 {
+    font-family: Georgia, serif;
+
+    font-weight: normal;
+}
+
+.sem-resultados p {
+    color: var(--cinza);
+
+    font-size: 13px;
+
+    margin-top: 7px;
+}
+
+
+/* =========================
+   RODAPÉ
+========================= */
+
+footer {
+    border-top: 1px solid var(--borda);
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    background: #070707;
+}
+
+.footer-logo {
+    width: 45px;
+    height: 45px;
+
+    border: 1px solid var(--dourado);
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: auto;
+
+    color: var(--dourado-claro);
+
+    font-family: Georgia, serif;
+}
+
+footer h2 {
+    font-family: Georgia, serif;
+
+    color: var(--dourado-claro);
+
+    font-size: 17px;
+
+    letter-spacing: 3px;
+
+    margin-top: 10px;
+}
+
+footer p {
+    color: #777;
+
+    font-size: 12px;
+
+    margin: 7px 0 25px;
+}
+
+footer span {
+    color: #494949;
+
+    font-size: 10px;
+}
+
+
+/* =========================
+   TELAS MAIORES
+========================= */
+
+@media (min-width: 700px) {
+
+    .produtos {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+    .hero h2 {
+        font-size: 45px;
+    }
+
+}
+/* =========================
+   ADMINISTRAÇÃO
+========================= */
+
+.admin-body {
+    background: #080808;
+    min-height: 100vh;
+}
+
+.admin-topo {
+    padding: 18px;
+    border-bottom: 1px solid var(--borda);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 15px;
+
+    position: sticky;
+    top: 0;
+
+    background: rgba(8, 8, 8, 0.96);
+
+    backdrop-filter: blur(12px);
+
+    z-index: 100;
+}
+
+.admin-mini {
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    color: var(--dourado);
+}
+
+.admin-topo h1 {
+    font-family: Georgia, serif;
+
+    font-size: 20px;
+
+    font-weight: normal;
+
+    margin-top: 3px;
+}
+
+.botao-voltar-site {
+    text-decoration: none;
+
+    color: #111;
+
+    background: var(--dourado);
+
+    padding: 10px 14px;
+
+    border-radius: 9px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+.admin-container {
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: auto;
+
+    padding: 18px;
+}
+
+.admin-resumo {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 10px;
+
+    margin-bottom: 18px;
+}
+
+.resumo-card {
+    background: var(--preto-card);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 13px;
+
+    padding: 15px 10px;
+
+    text-align: center;
+}
+
+.resumo-card span {
+    display: block;
+
+    color: #888;
+
+    font-size: 10px;
+
+    margin-bottom: 6px;
+}
+
+.resumo-card strong {
+    color: var(--dourado-claro);
+
+    font-family: Georgia, serif;
+
+    font-size: 23px;
+}
+
+.admin-card {
+    background: var(--preto-card);
+
+    border: 1px solid #1d1d1d;
+
+    border-radius: 17px;
+
+    padding: 18px;
+
+    margin-bottom: 18px;
+}
+
+.admin-titulo {
+    margin-bottom: 18px;
+}
+
+.admin-titulo span {
+    color: var(--dourado);
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+.admin-titulo h2 {
+    font-family: Georgia, serif;
+
+    font-weight: normal;
+
+    font-size: 23px;
+
+    margin-top: 5px;
+}
+
+.campo {
+    margin-bottom: 15px;
+}
+
+.campo label {
+    display: block;
+
+    color: #b5b5b5;
+
+    font-size: 12px;
+
+    margin-bottom: 7px;
+}
+
+.campo input,
+.campo select {
+    width: 100%;
+
+    padding: 14px;
+
+    background: #0c0c0c;
+
+    border: 1px solid #252525;
+
+    color: white;
+
+    border-radius: 10px;
+
+    outline: none;
+}
+
+.campo input:focus,
+.campo select:focus {
+    border-color: var(--dourado);
+}
+
+.admin-botoes {
+    display: flex;
+
+    gap: 10px;
+}
+
+.botao-salvar,
+.botao-cancelar {
+    flex: 1;
+
+    padding: 13px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.botao-salvar {
+    background: var(--dourado);
+
+    color: #111;
+
+    border: none;
+}
+
+.botao-cancelar {
+    background: transparent;
+
+    color: #aaa;
+
+    border: 1px solid #333;
+
+    display: none;
+}
+
+
+/* PRODUTOS DO ADMIN */
+
+.admin-produto {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px 0;
+
+    border-bottom: 1px solid #202020;
+}
+
+.admin-produto:last-child {
+    border-bottom: none;
+}
+
+.admin-produto img {
+    width: 70px;
+    height: 70px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    background: #111;
+}
+
+.admin-produto-info {
+    flex: 1;
+}
+
+.admin-produto-info h3 {
+    font-family: Georgia, serif;
+
+    font-weight: normal;
+
+    font-size: 15px;
+
+    margin-bottom: 4px;
+}
+
+.admin-produto-info p {
+    color: var(--dourado-claro);
+
+    font-weight: bold;
+
+    font-size: 13px;
+}
+
+.admin-produto-info span {
+    display: block;
+
+    color: #777;
+
+    font-size: 10px;
+
+    margin-top: 4px;
+}
+
+.admin-acoes {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.admin-acoes button {
+    border: none;
+
+    padding: 8px 10px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+.botao-editar {
+    background: var(--dourado);
+
+    color: #111;
+}
+
+.botao-excluir {
+    background: #2a1111;
+
+    color: #ff8e8e;
+
+    border: 1px solid #542121 !important;
+}
+
+.status-disponivel {
+    color: #70d997 !important;
+}
+
+.status-esgotado {
+    color: #ff8787 !important;
+}
+
+
+@media (min-width: 700px) {
+
+    .admin-topo {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .admin-card {
+        padding: 25px;
+    }
+
+}
+/* =========================
+   LOGIN ADMIN
+========================= */
+
+.login-container {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px 18px;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #201a0d,
+            #080808 45%
+        );
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+
+    background: #101010;
+
+    border: 1px solid var(--borda);
+
+    border-radius: 20px;
+
+    padding: 30px 22px;
+
+    text-align: center;
+}
+
+.login-logo {
+    width: 65px;
+    height: 65px;
+
+    border: 1px solid var(--dourado);
+
+    border-radius: 50%;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--dourado-claro);
+
+    font-family: Georgia, serif;
+
+    font-size: 25px;
+}
+
+.login-mini {
+    color: var(--dourado);
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+}
+
+.login-card h1 {
+    font-family: Georgia, serif;
+
+    font-weight: normal;
+
+    font-size: 28px;
+
+    margin: 8px 0 10px;
+}
+
+.login-texto {
+    color: #888;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+}
+
+.login-card .campo {
+    text-align: left;
+}
+
+.botao-login {
+    width: 100%;
+
+    border: none;
+
+    background: var(--dourado);
+
+    color: #111;
+
+    border-radius: 10px;
+
+    padding: 14px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.botao-login:disabled {
+    opacity: 0.5;
+
+    cursor: wait;
+}
+
+.mensagem-login {
+    min-height: 20px;
+
+    margin-top: 12px;
+
+    font-size: 12px;
+}
+
+.link-voltar-loja {
+    display: inline-block;
+
+    margin-top: 20px;
+
+    text-decoration: none;
+
+    color: #777;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   TOPO ADMIN
+========================= */
+
+.admin-topo-acoes {
+    display: flex;
+
+    gap: 8px;
+
+    align-items: center;
+}
+
+.botao-sair {
+    border: 1px solid #333;
+
+    background: #151515;
+
+    color: #bbb;
+
+    border-radius: 9px;
+
+    padding: 10px 13px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   FOTO
+========================= */
+
+.ajuda-foto {
+    color: #696969;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+
+    margin-top: 7px;
+}
+
+.campo input[type="file"] {
+    color: #888;
+}
+
+.campo input[type="file"]::file-selector-button {
+    border: none;
+
+    background: var(--dourado);
+
+    color: #111;
+
+    border-radius: 7px;
+
+    padding: 9px 12px;
+
+    margin-right: 10px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   PREVIEW DA FOTO
+========================= */
+
+.area-preview {
+    margin-bottom: 18px;
+}
+
+.area-preview span {
+    display: block;
+
+    color: #888;
+
+    font-size: 11px;
+
+    margin-bottom: 8px;
+}
+
+.area-preview img {
+    display: block;
+
+    width: 150px;
+    height: 150px;
+
+    object-fit: cover;
+
+    border-radius: 14px;
+
+    border: 1px solid var(--borda);
+}
+
+
+/* =========================
+   MENSAGENS
+========================= */
+
+.mensagem-produto {
+    min-height: 20px;
+
+    margin-top: 12px;
+
+    font-size: 12px;
+
+    text-align: center;
+}
+
+.admin-carregando {
+    color: #777;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    padding: 25px 10px;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 500px) {
+
+    .admin-topo h1 {
+        font-size: 16px;
+    }
+
+    .admin-topo-acoes {
+        gap: 5px;
+    }
+
+    .botao-voltar-site,
+    .botao-sair {
+        padding: 9px 10px;
+
+        font-size: 10px;
+    }
+
+}
