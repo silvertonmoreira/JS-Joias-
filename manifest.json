@@ -1,7 +1,7 @@
 {
-  "name": "JS Joias",
-  "short_name": "JS Joias",
-  "description": "Catálogo oficial da JS Joias",
+  "name": "TN Joias",
+  "short_name": "TN Joias",
+  "description": "Catálogo oficial da TN Joias",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#080808",

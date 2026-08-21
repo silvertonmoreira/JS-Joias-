@@ -16,7 +16,7 @@ const supabaseClient =
 
 
 // ==============================
-// WHATSAPP JS JOIAS
+// WHATSAPP TN JOIAS
 // ==============================
 
 const numeroWhatsApp =
@@ -87,17 +87,11 @@ function formatarPreco(valor) {
 function nomeCategoria(categoria) {
 
     const categorias = {
-
         aneis: "Anel",
-
         colares: "Colar",
-
         brincos: "Brinco",
-
         pulseiras: "Pulseira"
-
     };
-
 
     return categorias[categoria]
         || categoria;
@@ -114,7 +108,6 @@ async function carregarProdutos() {
     quantidadeProdutos.textContent =
         "Carregando...";
 
-
     const {
         data,
         error
@@ -127,7 +120,6 @@ async function carregarProdutos() {
                 ascending: false
             }
         );
-
 
     if (error) {
 
@@ -152,13 +144,10 @@ async function carregarProdutos() {
         `;
 
         return;
-
     }
-
 
     produtos =
         data || [];
-
 
     filtrarProdutos();
 
@@ -173,12 +162,10 @@ function mostrarProdutos(lista) {
 
     listaProdutos.innerHTML = "";
 
-
     quantidadeProdutos.textContent =
         lista.length === 1
             ? "1 peça"
             : `${lista.length} peças`;
-
 
     if (lista.length === 0) {
 
@@ -186,13 +173,10 @@ function mostrarProdutos(lista) {
             "block";
 
         return;
-
     }
-
 
     semResultados.style.display =
         "none";
-
 
     lista.forEach(produto => {
 
@@ -201,24 +185,19 @@ function mostrarProdutos(lista) {
                 "article"
             );
 
-
         card.classList.add(
             "produto-card"
         );
-
 
         const imagem =
             produto.imagem_url
             || "";
 
-
         const disponivel =
             produto.status
             !== "esgotado";
 
-
         card.innerHTML = `
-
             <div class="produto-imagem">
 
                 <img
@@ -228,17 +207,14 @@ function mostrarProdutos(lista) {
                 >
 
                 <span class="etiqueta">
-
                     ${
                         disponivel
                             ? "DISPONÍVEL"
                             : "ESGOTADO"
                     }
-
                 </span>
 
             </div>
-
 
             <div class="produto-info">
 
@@ -258,23 +234,17 @@ function mostrarProdutos(lista) {
                     )}
                 </p>
 
-
                 ${
                     disponivel
-
                     ? `
-
                         <button
                             class="botao-whatsapp"
                             onclick="comprarProduto(${produto.id})"
                         >
                             Comprar pelo WhatsApp
                         </button>
-
                     `
-
                     : `
-
                         <button
                             class="botao-whatsapp"
                             disabled
@@ -285,14 +255,11 @@ function mostrarProdutos(lista) {
                         >
                             Produto esgotado
                         </button>
-
                     `
                 }
 
             </div>
-
         `;
-
 
         listaProdutos.appendChild(
             card
@@ -314,7 +281,6 @@ function filtrarProdutos() {
             .toLowerCase()
             .trim();
 
-
     const filtrados =
         produtos.filter(
             produto => {
@@ -325,20 +291,15 @@ function filtrarProdutos() {
                         || ""
                     ).toLowerCase();
 
-
                 const combinaBusca =
                     nome.includes(
                         pesquisa
                     );
 
-
                 const combinaCategoria =
-                    categoriaAtual
-                    === "todos"
+                    categoriaAtual === "todos"
                     ||
-                    produto.categoria
-                    === categoriaAtual;
-
+                    produto.categoria === categoriaAtual;
 
                 return (
                     combinaBusca
@@ -348,7 +309,6 @@ function filtrarProdutos() {
 
             }
         );
-
 
     mostrarProdutos(
         filtrados
@@ -390,16 +350,13 @@ botoesCategorias.forEach(
                         }
                     );
 
-
                 botao.classList.add(
                     "ativa"
                 );
 
-
                 categoriaAtual =
                     botao.dataset
                         .categoria;
-
 
                 filtrarProdutos();
 
@@ -422,27 +379,21 @@ function comprarProduto(id) {
                 produto.id === id
         );
 
-
     if (!produto) {
         return;
     }
 
-
     const mensagem =
-
         `Olá! Tenho interesse na joia ` +
         `"${produto.nome}", no valor de ` +
         `${formatarPreco(produto.preco)}. ` +
         `Gostaria de saber mais.`;
 
-
     const link =
-
         `https://wa.me/${numeroWhatsApp}` +
         `?text=${encodeURIComponent(
             mensagem
         )}`;
-
 
     window.open(
         link,
@@ -458,7 +409,7 @@ function comprarProduto(id) {
 
 supabaseClient
     .channel(
-        "produtos-js-joias"
+        "produtos-tn-joias"
     )
     .on(
         "postgres_changes",
@@ -468,9 +419,7 @@ supabaseClient
             table: "produtos"
         },
         () => {
-
             carregarProdutos();
-
         }
     )
     .subscribe();

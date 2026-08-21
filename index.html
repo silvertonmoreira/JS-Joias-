@@ -3,19 +3,33 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>JS Joias</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
+    <title>TN Joias</title>
 
-<meta name="theme-color" content="#d6ad60">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 
-<link
-    rel="apple-touch-icon"
-    href="img/icon-192.png"
->
+    <link
+        rel="manifest"
+        href="manifest.json"
+    >
+
+    <meta
+        name="theme-color"
+        content="#d6ad60"
+    >
+
+    <link
+        rel="apple-touch-icon"
+        href="img/icon-192.png"
+    >
 </head>
 
 <body>
@@ -23,12 +37,19 @@
     <header class="topo">
 
         <div class="logo-area">
-            <div class="logo-circulo">JS</div>
+
+            <div class="logo-circulo">
+                TN
+            </div>
 
             <div>
-                <h1>JS JOIAS</h1>
-                <p>Elegância em cada detalhe</p>
+                <h1>TN JOIAS</h1>
+
+                <p>
+                    Elegância que conecta
+                </p>
             </div>
+
         </div>
 
     </header>
@@ -44,7 +65,9 @@
 
             <h2>
                 Encontre a joia
-                <span>perfeita para você</span>
+                <span>
+                    perfeita para você
+                </span>
             </h2>
 
             <p>
@@ -115,8 +138,15 @@
         <section class="titulo-produtos">
 
             <div>
-                <span>NOSSA COLEÇÃO</span>
-                <h2>Joias disponíveis</h2>
+
+                <span>
+                    NOSSA COLEÇÃO
+                </span>
+
+                <h2>
+                    Joias disponíveis
+                </h2>
+
             </div>
 
             <p id="quantidadeProdutos">
@@ -136,6 +166,7 @@
             class="sem-resultados"
             id="semResultados"
         >
+
             <div>◇</div>
 
             <h3>
@@ -145,6 +176,7 @@
             <p>
                 Nosso catálogo será atualizado em breve.
             </p>
+
         </div>
 
     </main>
@@ -153,55 +185,71 @@
     <footer>
 
         <div class="footer-logo">
-            JS
+            TN
         </div>
 
-        <h2>JS JOIAS</h2>
+        <h2>
+            TN JOIAS
+        </h2>
 
         <p>
-            Elegância em cada detalhe.
+            Elegância que conecta.
         </p>
 
         <span>
-            © 2026 JS Joias
+            © 2026 TN Joias
         </span>
 
     </footer>
 
 
     <!-- BIBLIOTECA DO SUPABASE -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
+
 
     <!-- NOSSO JAVASCRIPT -->
+
     <script src="script.js"></script>
+
+
     <script>
 
-    if ("serviceWorker" in navigator) {
+        if ("serviceWorker" in navigator) {
 
-        window.addEventListener(
-            "load",
-            () => {
+            window.addEventListener(
+                "load",
+                () => {
 
-                navigator.serviceWorker
-                    .register("./service-worker.js")
-                    .then(() => {
-                        console.log(
-                            "JS Joias instalada como PWA."
-                        );
-                    })
-                    .catch(error => {
-                        console.error(
-                            "Erro no Service Worker:",
-                            error
-                        );
-                    });
+                    navigator.serviceWorker
 
-            }
-        );
+                        .register("./service-worker.js")
 
-    }
+                        .then(() => {
 
-</script>
+                            console.log(
+                                "TN Joias instalada como PWA."
+                            );
+
+                        })
+
+                        .catch(error => {
+
+                            console.error(
+                                "Erro no Service Worker:",
+                                error
+                            );
+
+                        });
+
+                }
+            );
+
+        }
+
+    </script>
 
 </body>
 

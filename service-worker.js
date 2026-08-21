@@ -1,4 +1,4 @@
-const CACHE_NAME = "js-joias-v2";
+const CACHE_NAME = "tn-joias-v1";
 
 const arquivosParaCache = [
     "./",
@@ -20,7 +20,6 @@ self.addEventListener("install", event => {
     );
 
     self.skipWaiting();
-
 });
 
 
@@ -44,7 +43,6 @@ self.addEventListener("activate", event => {
     );
 
     self.clients.claim();
-
 });
 
 
@@ -57,21 +55,25 @@ self.addEventListener("fetch", event => {
     event.respondWith(
 
         fetch(event.request)
+
             .then(response => {
 
                 const copia = response.clone();
 
                 caches.open(CACHE_NAME)
                     .then(cache => {
+
                         cache.put(
                             event.request,
                             copia
                         );
+
                     });
 
                 return response;
 
             })
+
             .catch(() => {
 
                 return caches.match(

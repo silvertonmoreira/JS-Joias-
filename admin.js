@@ -115,7 +115,7 @@ let produtos = [];
 
 
 // =========================================
-// MOSTRAR MENSAGEM
+// MOSTRAR MENSAGENS
 // =========================================
 
 function mostrarMensagemLogin(
@@ -149,15 +149,15 @@ function mostrarMensagemProduto(
 
 
 // =========================================
-// VERIFICAR LOGIN AO ABRIR
+// VERIFICAR LOGIN
 // =========================================
 
 async function verificarLogin() {
 
     const {
         data: { session }
-    } = await supabaseClient.auth.getSession();
-
+    } = await supabaseClient.auth
+        .getSession();
 
     if (session) {
 
@@ -178,9 +178,11 @@ async function verificarLogin() {
 
 function mostrarLogin() {
 
-    areaLogin.style.display = "flex";
+    areaLogin.style.display =
+        "flex";
 
-    areaPainel.style.display = "none";
+    areaPainel.style.display =
+        "none";
 
 }
 
@@ -191,9 +193,11 @@ function mostrarLogin() {
 
 function mostrarPainel() {
 
-    areaLogin.style.display = "none";
+    areaLogin.style.display =
+        "none";
 
-    areaPainel.style.display = "block";
+    areaPainel.style.display =
+        "block";
 
     carregarProdutos();
 
@@ -212,7 +216,8 @@ formLogin.addEventListener(
 
         mostrarMensagemLogin("");
 
-        botaoLogin.disabled = true;
+        botaoLogin.disabled =
+            true;
 
         botaoLogin.textContent =
             "Entrando...";
@@ -226,7 +231,6 @@ formLogin.addEventListener(
 
 
         const {
-            data,
             error
         } = await supabaseClient.auth
             .signInWithPassword({
@@ -243,7 +247,7 @@ formLogin.addEventListener(
             console.error(error);
 
             mostrarMensagemLogin(
-                error. message
+                error.message
             );
 
             botaoLogin.disabled =
@@ -356,7 +360,8 @@ async function carregarProdutos() {
     carregandoProdutos.style.display =
         "block";
 
-    listaAdminProdutos.innerHTML = "";
+    listaAdminProdutos.innerHTML =
+        "";
 
 
     const {
@@ -441,7 +446,8 @@ function atualizarResumo() {
 
 function mostrarProdutos() {
 
-    listaAdminProdutos.innerHTML = "";
+    listaAdminProdutos.innerHTML =
+        "";
 
 
     if (produtos.length === 0) {
@@ -549,7 +555,9 @@ function mostrarProdutos() {
 
 
             listaAdminProdutos
-                .appendChild(item);
+                .appendChild(
+                    item
+                );
 
         }
     );
@@ -673,6 +681,85 @@ async function enviarFoto(arquivo) {
 
 
 // =========================================
+// APAGAR FOTO DO STORAGE
+// =========================================
+
+async function apagarFotoStorage(
+    urlImagem
+) {
+
+    if (!urlImagem) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const marcador =
+            "/storage/v1/object/public/joias/";
+
+
+        const indice =
+            urlImagem.indexOf(
+                marcador
+            );
+
+
+        if (indice === -1) {
+
+            console.warn(
+                "Não foi possível identificar o caminho da foto:",
+                urlImagem
+            );
+
+            return;
+
+        }
+
+
+        const caminho =
+            decodeURIComponent(
+                urlImagem.substring(
+                    indice +
+                    marcador.length
+                )
+            );
+
+
+        const {
+            error
+        } = await supabaseClient
+            .storage
+            .from("joias")
+            .remove(
+                [caminho]
+            );
+
+
+        if (error) {
+
+            console.error(
+                "Erro ao apagar foto do Storage:",
+                error
+            );
+
+        }
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao apagar foto:",
+            erro
+        );
+
+    }
+
+}
+
+
+// =========================================
 // SALVAR PRODUTO
 // =========================================
 
@@ -686,12 +773,20 @@ formProduto.addEventListener(
         mostrarMensagemProduto("");
 
 
-        botaoSalvar.disabled = true;
+        botaoSalvar.disabled =
+            true;
+
 
         botaoSalvar.textContent =
             produtoId.value
+
                 ? "Salvando alterações..."
+
                 : "Cadastrando joia...";
+
+
+        let novaFotoEnviada =
+            null;
 
 
         try {
@@ -700,8 +795,12 @@ formProduto.addEventListener(
                 imagemProduto.files[0];
 
 
-            let urlImagem =
+            const fotoAntiga =
                 imagemAtual.value;
+
+
+            let urlImagem =
+                fotoAntiga;
 
 
             // NOVO PRODUTO PRECISA DE FOTO
@@ -726,7 +825,7 @@ formProduto.addEventListener(
             }
 
 
-            // SE ESCOLHEU UMA FOTO NOVA
+            // ENVIA FOTO NOVA
 
             if (arquivo) {
 
@@ -735,10 +834,14 @@ formProduto.addEventListener(
                 );
 
 
-                urlImagem =
+                novaFotoEnviada =
                     await enviarFoto(
                         arquivo
                     );
+
+
+                urlImagem =
+                    novaFotoEnviada;
 
             }
 
@@ -767,7 +870,7 @@ formProduto.addEventListener(
 
 
             // =================================
-            // EDITANDO PRODUTO
+            // EDITAR PRODUTO
             // =================================
 
             if (produtoId.value) {
@@ -790,6 +893,23 @@ formProduto.addEventListener(
                 if (error) {
 
                     throw error;
+
+                }
+
+
+                // SE TROCOU A FOTO,
+                // APAGA A FOTO ANTIGA
+
+                if (
+                    arquivo &&
+                    fotoAntiga &&
+                    fotoAntiga !==
+                    urlImagem
+                ) {
+
+                    await apagarFotoStorage(
+                        fotoAntiga
+                    );
 
                 }
 
@@ -841,7 +961,22 @@ formProduto.addEventListener(
 
         } catch (erro) {
 
-            console.error(erro);
+            console.error(
+                erro
+            );
+
+
+            // SE A FOTO FOI ENVIADA,
+            // MAS O PRODUTO NÃO FOI SALVO,
+            // APAGA A FOTO
+
+            if (novaFotoEnviada) {
+
+                await apagarFotoStorage(
+                    novaFotoEnviada
+                );
+
+            }
 
 
             mostrarMensagemProduto(
@@ -900,8 +1035,6 @@ function editarProduto(id) {
     imagemAtual.value =
         produto.imagem_url || "";
 
-
-    // Mostra a foto atual
 
     if (produto.imagem_url) {
 
@@ -986,13 +1119,26 @@ async function excluirProduto(id) {
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
 
         alert(
             "Não foi possível excluir a joia."
         );
 
         return;
+
+    }
+
+
+    // APAGA A FOTO DO STORAGE
+
+    if (produto.imagem_url) {
+
+        await apagarFotoStorage(
+            produto.imagem_url
+        );
 
     }
 
@@ -1011,16 +1157,19 @@ function limparFormulario() {
     formProduto.reset();
 
 
-    produtoId.value = "";
+    produtoId.value =
+        "";
 
-    imagemAtual.value = "";
+    imagemAtual.value =
+        "";
 
 
     statusProduto.value =
         "disponivel";
 
 
-    previewImagem.src = "";
+    previewImagem.src =
+        "";
 
     areaPreview.style.display =
         "none";
@@ -1060,22 +1209,23 @@ botaoCancelar.addEventListener(
 // ACOMPANHAR LOGIN
 // =========================================
 
-supabaseClient.auth.onAuthStateChange(
-    (
-        event,
-        session
-    ) => {
+supabaseClient.auth
+    .onAuthStateChange(
+        (
+            event,
+            session
+        ) => {
 
-        if (
-            event === "SIGNED_OUT"
-        ) {
+            if (
+                event === "SIGNED_OUT"
+            ) {
 
-            mostrarLogin();
+                mostrarLogin();
+
+            }
 
         }
-
-    }
-);
+    );
 
 
 // =========================================
