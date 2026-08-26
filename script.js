@@ -428,5 +428,135 @@ supabaseClient
 // ==============================
 // INICIAR SITE
 // ==============================
+// ==============================
+// AMPLIAR FOTO DA JOIA
+// ==============================
 
+const modalImagem =
+    document.getElementById(
+        "modalImagem"
+    );
+
+const imagemAmpliada =
+    document.getElementById(
+        "imagemAmpliada"
+    );
+
+const fecharModal =
+    document.getElementById(
+        "fecharModal"
+    );
+
+
+// ABRIR FOTO
+listaProdutos.addEventListener(
+    "click",
+    event => {
+
+        const imagemClicada =
+            event.target.closest(
+                ".produto-imagem img"
+            );
+
+        if (!imagemClicada) {
+            return;
+        }
+
+        imagemAmpliada.src =
+            imagemClicada.src;
+
+        imagemAmpliada.alt =
+            imagemClicada.alt;
+
+        imagemAmpliada.classList
+            .remove("zoom");
+
+        modalImagem.classList
+            .add("ativo");
+
+        document.body.style.overflow =
+            "hidden";
+
+    }
+);
+
+
+// DAR ZOOM NA FOTO
+imagemAmpliada.addEventListener(
+    "click",
+    event => {
+
+        event.stopPropagation();
+
+        imagemAmpliada.classList
+            .toggle("zoom");
+
+    }
+);
+
+
+// FUNÇÃO PARA FECHAR
+function fecharImagemAmpliada() {
+
+    modalImagem.classList
+        .remove("ativo");
+
+    imagemAmpliada.classList
+        .remove("zoom");
+
+    imagemAmpliada.src = "";
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+// BOTÃO X
+fecharModal.addEventListener(
+    "click",
+    fecharImagemAmpliada
+);
+
+
+// CLICAR NO FUNDO ESCURO
+modalImagem.addEventListener(
+    "click",
+    event => {
+
+        if (
+            event.target === modalImagem
+            ||
+            event.target.classList
+                .contains(
+                    "modal-conteudo"
+                )
+        ) {
+
+            fecharImagemAmpliada();
+
+        }
+
+    }
+);
+
+
+// TECLA ESC NO COMPUTADOR
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape"
+            &&
+            modalImagem.classList
+                .contains("ativo")
+        ) {
+
+            fecharImagemAmpliada();
+
+        }
+
+    }
+);
 carregarProdutos();
