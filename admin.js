@@ -601,6 +601,118 @@ imagemProduto.addEventListener(
 
 
 // =========================================
+// COMPRIMIR FOTO ANTES DO UPLOAD
+// =========================================
+
+async function comprimirImagem(arquivo) {
+
+    if (!arquivo || !arquivo.type.startsWith("image/")) {
+        return arquivo;
+    }
+
+    const TAMANHO_MAXIMO = 1600;
+    const QUALIDADE_WEBP = 0.82;
+
+    try {
+
+        const imagem = await new Promise((resolve, reject) => {
+
+            const img = new Image();
+            const url = URL.createObjectURL(arquivo);
+
+            img.onload = () => {
+                URL.revokeObjectURL(url);
+                resolve(img);
+            };
+
+            img.onerror = () => {
+                URL.revokeObjectURL(url);
+                reject(new Error("Não foi possível ler a imagem."));
+            };
+
+            img.src = url;
+
+        });
+
+
+        let largura = imagem.naturalWidth;
+        let altura = imagem.naturalHeight;
+
+        if (largura > TAMANHO_MAXIMO || altura > TAMANHO_MAXIMO) {
+
+            const proporcao = Math.min(
+                TAMANHO_MAXIMO / largura,
+                TAMANHO_MAXIMO / altura
+            );
+
+            largura = Math.round(largura * proporcao);
+            altura = Math.round(altura * proporcao);
+
+        }
+
+
+        const canvas = document.createElement("canvas");
+        canvas.width = largura;
+        canvas.height = altura;
+
+        const contexto = canvas.getContext("2d");
+
+        if (!contexto) {
+            return arquivo;
+        }
+
+        contexto.drawImage(
+            imagem,
+            0,
+            0,
+            largura,
+            altura
+        );
+
+
+        const blobComprimido = await new Promise(resolve => {
+            canvas.toBlob(
+                resolve,
+                "image/webp",
+                QUALIDADE_WEBP
+            );
+        });
+
+
+        if (!blobComprimido) {
+            return arquivo;
+        }
+
+        // Se por algum motivo a compressão aumentar o arquivo,
+        // mantém o original para não desperdiçar espaço.
+        if (blobComprimido.size >= arquivo.size) {
+            return arquivo;
+        }
+
+        return new File(
+            [blobComprimido],
+            `joia-${Date.now()}.webp`,
+            {
+                type: "image/webp",
+                lastModified: Date.now()
+            }
+        );
+
+    } catch (erro) {
+
+        console.warn(
+            "Não foi possível comprimir a imagem. O arquivo original será enviado.",
+            erro
+        );
+
+        return arquivo;
+
+    }
+
+}
+
+
+// =========================================
 // ENVIAR FOTO PARA O SUPABASE
 // =========================================
 
@@ -613,10 +725,14 @@ async function enviarFoto(arquivo) {
     }
 
 
+    const arquivoParaUpload =
+        await comprimirImagem(arquivo);
+
+
     const extensao =
-        arquivo.name
-            .split(".")
-            .pop();
+        arquivoParaUpload.type === "image/webp"
+            ? "webp"
+            : (arquivoParaUpload.name.split(".").pop() || "jpg");
 
 
     const nomeArquivo =
@@ -642,10 +758,10 @@ async function enviarFoto(arquivo) {
         .from("joias")
         .upload(
             caminho,
-            arquivo,
+            arquivoParaUpload,
             {
                 cacheControl: "3600",
-
+                contentType: arquivoParaUpload.type || undefined,
                 upsert: false
             }
         );
