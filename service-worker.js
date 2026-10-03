@@ -1,4 +1,4 @@
-const CACHE_NAME = "tn-joias-v2";
+const CACHE_NAME = "tn-joias-v3";
 
 const arquivosParaCache = [
     "./",

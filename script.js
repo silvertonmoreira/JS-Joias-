@@ -92,7 +92,8 @@ function nomeCategoria(categoria) {
         aneis: "Anel",
         colares: "Colar",
         brincos: "Brinco",
-        pulseiras: "Pulseira"
+        pulseiras: "Pulseira",
+        pingentes: "Pingente"
     };
 
     return categorias[categoria]

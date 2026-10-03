@@ -340,7 +340,8 @@ function nomeCategoria(categoria) {
 
         brincos: "Brinco",
 
-        pulseiras: "Pulseira"
+        pulseiras: "Pulseira",
+        pingentes: "Pingente"
 
     };
 
