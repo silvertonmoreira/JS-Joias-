@@ -19,8 +19,10 @@ const supabaseClient =
 // WHATSAPP TN JOIAS
 // ==============================
 
-const numeroWhatsApp =
-    "5591984328738";
+const contatosWhatsApp = [
+    { elemento: "whatsappTechNexa", numero: "5591985457012" },
+    { elemento: "whatsappJessica", numero: "5591985775988" }
+];
 
 
 // ==============================
@@ -371,6 +373,27 @@ botoesCategorias.forEach(
 // WHATSAPP
 // ==============================
 
+const modalVendedores = document.getElementById("modalVendedores");
+let overflowAntesVendedores = "";
+
+document.getElementById("fecharVendedores").addEventListener("click", () => {
+    modalVendedores.close();
+});
+
+modalVendedores.addEventListener("click", event => {
+    const limites = modalVendedores.getBoundingClientRect();
+    if (event.target === modalVendedores && (
+        event.clientX < limites.left || event.clientX > limites.right ||
+        event.clientY < limites.top || event.clientY > limites.bottom
+    )) {
+        modalVendedores.close();
+    }
+});
+
+modalVendedores.addEventListener("close", () => {
+    document.body.style.overflow = overflowAntesVendedores;
+});
+
 function comprarProduto(id) {
 
     const produto =
@@ -379,7 +402,7 @@ function comprarProduto(id) {
                 produto.id === id
         );
 
-    if (!produto) {
+    if (!produto || produto.status === "esgotado") {
         return;
     }
 
@@ -389,16 +412,19 @@ function comprarProduto(id) {
         `${formatarPreco(produto.preco)}. ` +
         `Gostaria de saber mais.`;
 
-    const link =
-        `https://wa.me/${numeroWhatsApp}` +
-        `?text=${encodeURIComponent(
-            mensagem
-        )}`;
+    contatosWhatsApp.forEach(contato => {
+        document.getElementById(contato.elemento).href =
+            `https://wa.me/${contato.numero}?text=${encodeURIComponent(mensagem)}`;
+    });
 
-    window.open(
-        link,
-        "_blank"
-    );
+    document.getElementById("produtoVendedores").textContent =
+        `${produto.nome} • ${formatarPreco(produto.preco)}`;
+
+    if (!modalVendedores.open) {
+        overflowAntesVendedores = document.body.style.overflow;
+        modalVendedores.showModal();
+        document.body.style.overflow = "hidden";
+    }
 
 }
 
