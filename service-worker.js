@@ -1,10 +1,11 @@
-const CACHE_NAME = "tn-joias-v3";
+const CACHE_NAME = "tn-joias-v4";
 
 const arquivosParaCache = [
     "./",
     "./index.html",
     "./style.css",
     "./script.js",
+    "./informacoes.js",
     "./manifest.json",
     "./img/icon-192.png",
     "./img/icon-512.png"

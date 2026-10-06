@@ -1349,3 +1349,65 @@ footer span {
     outline: 2px solid var(--dourado-claro);
     outline-offset: 3px;
 }
+
+/* Informações da loja */
+.informacoes-botoes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 26px;
+}
+.botao-informacao {
+    min-height: 54px;
+    padding: 12px 10px;
+    border: 1px solid rgba(214, 173, 96, .45);
+    border-radius: 12px;
+    background: linear-gradient(145deg, #252016, #12110e);
+    color: var(--dourado-claro);
+    font: 600 13px/1.4 Arial, sans-serif;
+    cursor: pointer;
+    transition: background .2s, border-color .2s;
+}
+.botao-informacao:hover { background: #302719; border-color: var(--dourado); }
+.botao-informacao:focus-visible, .fechar-informacao:focus-visible {
+    outline: 2px solid var(--dourado-claro); outline-offset: 3px;
+}
+.dialog-informacao {
+    margin: auto;
+    width: min(560px, calc(100% - 32px));
+    max-height: 85vh;
+    max-height: 85dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 0;
+    border: 1px solid rgba(214, 173, 96, .4);
+    border-radius: 20px;
+    background: #141310;
+    color: #e8e4dc;
+    box-shadow: 0 24px 80px #0009;
+}
+.dialog-informacao::backdrop { background: rgba(0, 0, 0, .78); }
+.informacao-cabecalho {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 20px 22px 16px;
+    border-bottom: 1px solid var(--borda);
+}
+.informacao-cabecalho h2 { font: 26px/1.2 Georgia, serif; color: var(--dourado-claro); }
+.fechar-informacao {
+    flex: 0 0 44px; width: 44px; height: 44px;
+    border: 1px solid var(--borda); border-radius: 50%;
+    background: #242018; color: var(--dourado-claro); font-size: 28px; cursor: pointer;
+}
+.informacao-conteudo { padding: 22px; font-size: 15px; line-height: 1.7; }
+.informacao-conteudo p + p { margin-top: 16px; }
+.informacao-conteudo h3 { font-size: 16px; color: var(--dourado-claro); margin-bottom: 12px; }
+.informacao-conteudo ul { padding-left: 20px; margin-bottom: 24px; }
+.informacao-conteudo li + li { margin-top: 10px; }
+.informacao-destaque { padding: 16px; background: #211d15; border-left: 2px solid var(--dourado); border-radius: 0 8px 8px 0; }
+@media (max-width: 380px) {
+    .informacoes-botoes { gap: 6px; }
+    .botao-informacao { padding: 10px 5px; font-size: 11px; }
+    .informacao-cabecalho { padding: 16px; }
+    .informacao-cabecalho h2 { font-size: 23px; }
+    .informacao-conteudo { padding: 18px; }
+}

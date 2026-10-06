@@ -70,10 +70,11 @@
                 </span>
             </h2>
 
-            <p>
-                Peças selecionadas para deixar cada momento
-                ainda mais especial.
-            </p>
+            <div class="informacoes-botoes" aria-label="Informações da loja">
+                <button type="button" class="botao-informacao" data-dialog="infoPagamento" aria-haspopup="dialog">Formas de pagamento</button>
+                <button type="button" class="botao-informacao" data-dialog="infoGarantia" aria-haspopup="dialog">Garantia e cuidados</button>
+                <button type="button" class="botao-informacao" data-dialog="infoSite" aria-haspopup="dialog">Sobre o site</button>
+            </div>
 
         </section>
 
@@ -231,6 +232,49 @@
             <a id="whatsappJessica" class="opcao-vendedor" target="_blank" rel="noopener noreferrer">Comprar com vendedora <strong>Jéssica</strong></a>
         </div>
     </dialog>
+
+
+    <dialog id="infoPagamento" class="dialog-informacao" aria-labelledby="tituloPagamento">
+        <div class="informacao-cabecalho">
+            <h2 id="tituloPagamento">Formas de pagamento</h2>
+            <button type="button" class="fechar-informacao" aria-label="Fechar informações de pagamento" autofocus>×</button>
+        </div>
+        <div class="informacao-conteudo">
+            <p>Aceitamos dinheiro, Pix e cartão de crédito, com opção de parcelamento.</p>
+            <p class="informacao-destaque"><strong>Pagamento parcelado:</strong> há acréscimo da taxa da máquina, conforme a quantidade de parcelas escolhida. Consulte o valor com o vendedor antes de finalizar a compra.</p>
+        </div>
+    </dialog>
+
+    <dialog id="infoGarantia" class="dialog-informacao" aria-labelledby="tituloGarantia">
+        <div class="informacao-cabecalho">
+            <h2 id="tituloGarantia">Garantia e cuidados</h2>
+            <button type="button" class="fechar-informacao" aria-label="Fechar garantia e cuidados" autofocus>×</button>
+        </div>
+        <div class="informacao-conteudo">
+            <h3>Cuidados com a sua semijoia</h3>
+            <ul>
+                <li>Retire a peça durante os serviços domésticos.</li>
+                <li>Evite o contato com produtos químicos, como água sanitária, amoníaco, soda e tintura para cabelo.</li>
+                <li>Nunca borrife perfume diretamente na peça.</li>
+                <li>Após o uso, lave com escova macia e detergente neutro. Enxágue bem. Você pode aproveitar a hora do banho para lavá-la.</li>
+            </ul>
+            <h3>O que a garantia não cobre</h3>
+            <p>A garantia não cobre o mau uso da semijoia.</p>
+            <p>Não trocamos peças escurecidas por sujeira, riscadas, incompletas, quebradas, manchadas, amassadas, usadas, sem pedra ou com pedra fosca.</p>
+        </div>
+    </dialog>
+
+    <dialog id="infoSite" class="dialog-informacao" aria-labelledby="tituloSite">
+        <div class="informacao-cabecalho">
+            <h2 id="tituloSite">Sobre o site</h2>
+            <button type="button" class="fechar-informacao" aria-label="Fechar informações sobre o site" autofocus>×</button>
+        </div>
+        <div class="informacao-conteudo">
+            <p>As imagens das joias deste site são ilustrativas e foram criadas com inteligência artificial. Por isso, algumas podem apresentar diferenças em relação às peças reais.</p>
+            <p class="informacao-destaque">Gostou de alguma joia? Clique em <strong>Comprar pelo WhatsApp</strong> e fale com um dos nossos vendedores. Vamos mostrar a joia pessoalmente para você.</p>
+        </div>
+    </dialog>
+    <script src="informacoes.js"></script>
 
     <!-- BIBLIOTECA DO SUPABASE -->
 
