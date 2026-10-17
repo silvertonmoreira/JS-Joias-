@@ -20,7 +20,6 @@ const supabaseClient =
 // ==============================
 
 const contatosWhatsApp = [
-    { elemento: "whatsappTechNexa", numero: "5591985457012" },
     { elemento: "whatsappJessica", numero: "5591985775988" }
 ];
 
