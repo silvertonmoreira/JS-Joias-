@@ -107,17 +107,46 @@ body {
     margin: auto;
 }
 
+/* Marca com entrada suave e reflexo dourado. */
 .hero-detalhe {
-    font-size: 10px;
-
-    letter-spacing: 3px;
-
-    color: var(--dourado);
-
     display: block;
-
-    margin-bottom: 18px;
+    margin-bottom: 24px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(28px, 7.5vw, 52px);
+    font-weight: bold;
+    line-height: 1.2;
+    letter-spacing: clamp(1px, 0.5vw, 4px);
+    color: var(--dourado-claro);
+    animation: magold-entrada 900ms ease-out both;
 }
+
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+    .hero-detalhe {
+        background-image: linear-gradient(110deg, #b88732 0%, #e9c678 35%, #fff7dc 48%, #e9c678 60%, #b88732 100%);
+        background-size: 250% 100%;
+        background-position: 100% center;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: magold-entrada 900ms ease-out both,
+                   magold-brilho 3.5s ease-in-out 900ms 3;
+    }
+}
+
+@keyframes magold-entrada {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes magold-brilho {
+    from { background-position: 100% center; }
+    to { background-position: 0% center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-detalhe { animation: none; }
+}
+
 
 .hero h2 {
     font-family: Georgia, serif;
